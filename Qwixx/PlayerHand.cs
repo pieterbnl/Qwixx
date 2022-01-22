@@ -6,22 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Qwixx
-{
-    internal class CreatePlayerHand
+{    
+    internal class PlayerHand
     {
-
-        // Create player hand
-        List<Dice> PlayerHand = new List<Dice>();
-
-       
-
-        
-        void CreateHand()
+       /* void CreateHand()
         {
             PlayerHand.Add(DiceYellow);
             PlayerHand.Add(DiceRed);
             PlayerHand.Add(DiceWhiteOne);
-        }
+        }*/
 
     }
 }
