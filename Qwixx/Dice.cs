@@ -11,6 +11,7 @@ namespace Qwixx
         public string Color { get; set; } = "";
         public int Eyes { get; set; } = 0;
 
+        // Constructor
         public Dice(string Color, int Eyes) 
         {
             this.Color = Color;

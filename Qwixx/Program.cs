@@ -6,8 +6,8 @@ namespace Qwixx
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("PRESS ENTER TO START");
-            Console.ReadLine();
+            /*Console.WriteLine("PRESS ENTER TO START");
+            Console.ReadLine();*/
 
             // Initiate game by showing it's menu
             Interfacing.MainMenu();
