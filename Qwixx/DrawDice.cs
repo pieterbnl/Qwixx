@@ -22,20 +22,57 @@ namespace Qwixx
 
         internal static void GenerateDiceFaces()
         {
-        /*    DiceFaces = */
-        }
+            // Create faces for all dice eyes
+            StringBuilder Dice1 = new StringBuilder(
+           "┌─────────┐\\n" +
+           "│         │\\n" +
+           "│    0    │\\n" +
+           "│         │\\n" +
+           "└─────────┘");
 
-        /*internal static string GetDiceFaces(int[] DiceValues)
+            StringBuilder Dice2 = new StringBuilder(
+           "┌─────────┐\\n" +
+           "│  0      │\\n" +
+           "│         │\\n" +
+           "│      0  │\\n" +
+           "└─────────┘");
+
+            StringBuilder Dice3 = new StringBuilder(
+            "┌─────────┐\\n" +
+            "│  0      │\\n" +
+            "│    0    │\\n" +
+            "│      0  │\\n" +
+            "└─────────┘");
+
+            StringBuilder Dice4 = new StringBuilder(
+            "┌─────────┐\\n" +
+            "│  0   0  │\\n" +
+            "│         │\\n" +
+            "│  0   0  │\\n" +
+            "└─────────┘");
+
+            StringBuilder Dice5 = new StringBuilder(
+            "┌─────────┐\\n" +
+            "│  0   0  │\\n" +
+            "│    0    │\\n" +
+            "│  0   0  │\\n" +
+            "└─────────┘");
+
+            StringBuilder Dice6 = new StringBuilder(
+            "┌─────────┐\\n" +
+            "│  0   0  │\\n" +
+            "│  0   0  │\\n" +
+            "│  0   0  │\\n" +
+            "└─────────┘");
+
+            // Add all dice faces to an array
+            StringBuilder[] Dices = { Dice1, Dice2, Dice3, Dice4, Dice5, Dice6 };
+        }
+/*
+        internal static StringBuilder GetDiceFaces(int[] DiceValues)
         {
 
-            string Dice =
-            "┌─────────┐" +
-            "│         │" +
-            "│    ●    │" +
-            "│         │" +
-            "└─────────┘";
-
-
+*//*
 
             const string[] DICE_ART =
 
@@ -47,8 +84,8 @@ namespace Qwixx
             }
 
 
-            return DiceFace;
-        }*/
-
+            return DiceFace;*//*
+        }
+*/
     }
 }
