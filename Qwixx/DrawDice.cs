@@ -19,5 +19,36 @@ namespace Qwixx
                 Console.WriteLine("Dice " + count + "(" + dice.Color + ") eyes are: " + dice.Eyes);
             }
         }
+
+        internal static void GenerateDiceFaces()
+        {
+        /*    DiceFaces = */
+        }
+
+        /*internal static string GetDiceFaces(int[] DiceValues)
+        {
+
+            string Dice =
+            "┌─────────┐" +
+            "│         │" +
+            "│    ●    │" +
+            "│         │" +
+            "└─────────┘";
+
+
+
+            const string[] DICE_ART =
+
+
+            string[] DiceFaces;
+            foreach (int value in DiceValues)
+            {
+                DiceFaces.Append(DICE_ART[value]);
+            }
+
+
+            return DiceFace;
+        }*/
+
     }
 }
