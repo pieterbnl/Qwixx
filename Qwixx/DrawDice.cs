@@ -20,72 +20,45 @@ namespace Qwixx
             }
         }
 
-        internal static void GenerateDiceFaces()
+        // Outputs concatated colored faces of passed dices, line by line
+        // Requires input of a list with DiceArt StringBuilder faces        
+        internal static void DisplayDices(List<StringBuilder[]> DicesThrown)
         {
-            // Create faces for all dice eyes
-            StringBuilder Dice1 = new StringBuilder(
-           "┌─────────┐\\n" +
-           "│         │\\n" +
-           "│    0    │\\n" +
-           "│         │\\n" +
-           "└─────────┘");
-
-            StringBuilder Dice2 = new StringBuilder(
-           "┌─────────┐\\n" +
-           "│  0      │\\n" +
-           "│         │\\n" +
-           "│      0  │\\n" +
-           "└─────────┘");
-
-            StringBuilder Dice3 = new StringBuilder(
-            "┌─────────┐\\n" +
-            "│  0      │\\n" +
-            "│    0    │\\n" +
-            "│      0  │\\n" +
-            "└─────────┘");
-
-            StringBuilder Dice4 = new StringBuilder(
-            "┌─────────┐\\n" +
-            "│  0   0  │\\n" +
-            "│         │\\n" +
-            "│  0   0  │\\n" +
-            "└─────────┘");
-
-            StringBuilder Dice5 = new StringBuilder(
-            "┌─────────┐\\n" +
-            "│  0   0  │\\n" +
-            "│    0    │\\n" +
-            "│  0   0  │\\n" +
-            "└─────────┘");
-
-            StringBuilder Dice6 = new StringBuilder(
-            "┌─────────┐\\n" +
-            "│  0   0  │\\n" +
-            "│  0   0  │\\n" +
-            "│  0   0  │\\n" +
-            "└─────────┘");
-
-            // Add all dice faces to an array
-            StringBuilder[] Dices = { Dice1, Dice2, Dice3, Dice4, Dice5, Dice6 };
-        }
-/*
-        internal static StringBuilder GetDiceFaces(int[] DiceValues)
-        {
-
-*//*
-
-            const string[] DICE_ART =
-
-
-            string[] DiceFaces;
-            foreach (int value in DiceValues)
+            // Loop trough all (5) lines that make up a dice face
+            for (int line = 0; line <= 4; line++)
             {
-                DiceFaces.Append(DICE_ART[value]);
+                // Loop through each thrown dice
+                foreach (StringBuilder[] dice in DicesThrown)
+                {
+                    // Check the dice color and set the console display accordingly
+                    switch (dice[5].ToString())
+                    {
+                        case "white":
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                        case "red":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            break;
+                        case "green":
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            break;
+                        case "yellow":
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            break;
+                        case "blue":
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            break;
+                    }
+
+                    // Write line from dice, including some white space
+                    Console.Write(dice[line]);
+                    Console.Write("    ");
+
+                }
+                // Break line, as now all thrown dices are looped
+                // and a full dice face line has been completed
+                Console.WriteLine();
             }
-
-
-            return DiceFace;*//*
         }
-*/
     }
 }
