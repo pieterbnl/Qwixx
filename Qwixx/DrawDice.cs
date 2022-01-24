@@ -18,33 +18,7 @@ namespace Qwixx
                 count = count + 1;
                 Console.WriteLine("Dice " + count + "(" + dice.Color + ") eyes are: " + dice.Eyes);
             }
-        }
-
-        internal static void AddDiceToPlayerHand(int number)
-        {
-            switch (number)
-            {
-                case 1:
-                    
-                    break;
-                case 2:
-                    
-                    break;
-                case 3:
-                    
-                    break;
-                case 4:
-                    
-                    break;
-                case 5:
-                    
-                    break;
-                case 6:
-                    
-                    break;
-            }
-        }
-
+        }        
 
         // Outputs concatated colored faces of passed dices, line by line
         // Requires input of a list with DiceArt StringBuilder faces        
@@ -84,6 +58,9 @@ namespace Qwixx
                 // Break line, as now all thrown dices are looped
                 // and a full dice face line has been completed
                 Console.WriteLine();
+
+                // Return console display color to normal
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
     }

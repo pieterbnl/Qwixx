@@ -14,6 +14,5 @@ namespace Qwixx
             Random dice = new Random();
             return dice.Next(1, 7);
         }
-
     }
 }

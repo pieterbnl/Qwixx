@@ -15,7 +15,7 @@ namespace Qwixx
 
 
             // TEMP STUFF FOR QUICK TESTING
-            string userMenuSelection = "";
+            // string userMenuSelection = "";
             Player PlayerOne = new Player("P1");
             Player PlayerTwo = new Player("P2");
             Player PlayerThree = new Player("P3");
@@ -108,7 +108,7 @@ namespace Qwixx
                         DicesThrown.Add(DiceArt.DICE3);            
 
                         // Display faces of all dices eyes
-                        DrawDice.DisplayDices(DicesThrown);*/
+                        DrawDice.DisplayDices(DicesThrown);*/            
         }
     }
 }
