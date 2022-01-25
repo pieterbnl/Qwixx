@@ -17,10 +17,8 @@ namespace Qwixx
         internal Scoreboard Scoreboard = new Scoreboard(); // holds a player's scoreboard
         
         // CHECK: remove set? should only be changeable via seperate method
-        internal List<Dice> PlayerHand { get; set; } = new List<Dice>();
-        
-        // internal List<StringBuilder[]> PlayerHandDiceArt = new List<StringBuilder[]>();        
-
+        internal List<Dice> PlayerHandDices { get; set; } = new List<Dice>();
+                
         // Empty constructor
         public Player()
         {
@@ -31,25 +29,6 @@ namespace Qwixx
         public Player(string username)
         {
             PlayerName = username;
-        }
-
-        // Add a dice to the player's hand
-        // Requires passing of dice color (string) and eyes (int)
-        internal void AddDiceToPlayerHand(string color, int number)
-        {
-            PlayerHand.Add(new Dice(color, number));
-        }
-
-        // Clear player's hand, removing all dices
-        internal void ClearPlayerHand()
-        {
-            PlayerHand.Clear();
-        }
-
-        // Get player's hand dice value of a given dice (index value)
-        internal int PlayerDiceValue(int index)
-        {
-            return PlayerHand[index].Eyes;            
-        }
+        }        
     }
 }

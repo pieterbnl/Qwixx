@@ -18,12 +18,29 @@ namespace Qwixx
             this.Eyes = Eyes;
         }
 
-        // Generate a rolled dice eyes
-        internal static int RollADice()
-        {
-            Random dice = new Random();
-            return dice.Next(1, 7);
+        // Returns a given dice with random eyes
+        internal static Dice RollADice(Dice dice)
+        {            
+            Random value = new Random();
+            dice.Eyes = value.Next(1, 7);
+            return dice;
         }
+
+        // Returns a dice at given index in a hand of dices, with random eyes
+        internal static List<Dice> RollADiceInAHand(List<Dice> dices, int index)
+        {
+            Random value = new Random();
+            dices[index].Eyes = value.Next(1, 7);
+            return dices;
+        }
+
+        /*
+                // Generate a rolled dice eyes
+                internal static int RollADice()
+                {
+                    Random dice = new Random();
+                    return dice.Next(1, 7);
+                }*/
 
         // Converts one or more passed integer values (representing dice eyes) to representing diceart
         // Returns the diceart in a list, containing all dice art in SB format
@@ -109,7 +126,7 @@ namespace Qwixx
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        // Method to draw dice to console
+        /*// Draw dice to console - OBSOLETE
         internal static void Draw(List<Dice> PlayerHand)
         {
             int count = 0;
@@ -118,6 +135,39 @@ namespace Qwixx
                 count = count + 1;
                 Console.WriteLine("Dice " + count + "(" + dice.Color + ") eyes are: " + dice.Eyes);
             }
+        }*/
+
+        // Adds all initial dices to game
+        internal static List<Dice> AddDicesToGame(List<Dice> dices)
+        {
+            AddADice("white",1, dices);
+            AddADice("white", 1, dices);
+            AddADice("blue", 1, dices);
+            AddADice("green", 1, dices);
+            AddADice("yellow", 1, dices);
+            AddADice("red", 1, dices);
+
+            return dices;
+        }
+                
+        // Add's a dice to a given list with dices
+        // Requires passing a dice color (string) and eyes (int)
+        internal static List<Dice> AddADice(string color, int number, List<Dice> dices)
+        {            
+            dices.Add(new Dice(color, number));
+            return dices;
+        }
+        
+        // Return an empty list of dices
+        internal static List<Dice> ClearDices()
+        {            
+            return new List<Dice>();
+        }
+        
+        // Returns the eyes (int value) of a given dice object
+        internal static int GetDiceValue(Dice dice)
+        {
+            return dice.Eyes;
         }
     }
 }

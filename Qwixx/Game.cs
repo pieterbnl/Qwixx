@@ -21,8 +21,7 @@ namespace Qwixx
         internal static Player PlayerFive = new Player();
 
         static string userMenuSelection = ""; // for receiving a user's menu selection
-
-        internal static List<StringBuilder[]> DicesThrown = new List<StringBuilder[]>();
+        static internal List<Dice> InGameDices { get; set; } = new List<Dice>(); // holds all active dices in the game
 
         internal static List<Player> PlayersUnsorted = new List<Player>(); // holds list of newly created players, in order of player creation
         internal static List<Player> PlayersSorted = new List<Player>(); // holds list of players, in playing order after having rolled a dice
@@ -32,8 +31,8 @@ namespace Qwixx
         {
             NumberOfPlayers = 0;
             ActivePlayer = 0;
-            DicesThrown.Clear();
-            PlayersUnsorted.Clear();
+            InGameDices = Dice.ClearDices(); // returns an empty list with no dices
+            PlayersUnsorted.Clear(); // REFACTOR - create method to clear
         }
 
         // Initiate game
@@ -47,6 +46,9 @@ namespace Qwixx
 
             // Create dice faces art
             DiceArt.CreateDiceFaces();
+
+            // Add dices to game
+            InGameDices = Dice.AddDicesToGame(InGameDices);
 
             // Decide playing order, by rolling dices
             Game.SetPlayingOrder();
@@ -122,9 +124,9 @@ namespace Qwixx
 
             // Iterate through all player objects in unsorted player list            
             foreach (Player player in PlayersUnsorted)
-            {              
+            {
                 // Make sure to clear player's hand: containing no dices
-                player.ClearPlayerHand();
+                player.PlayerHandDices = Dice.ClearDices();
 
                 // Clear header
                 Interface.Header();              
@@ -136,8 +138,11 @@ namespace Qwixx
                     userMenuSelection = Console.ReadLine().ToUpper();
                 }
 
-                // Roll a dice and add rolled dice to playerhand
-                player.AddDiceToPlayerHand("white", Dice.RollADice());
+                // Add a white dice to the player's hand
+                player.PlayerHandDices = Dice.AddADice("white", 1, player.PlayerHandDices);
+
+                // Roll the player's dice
+                player.PlayerHandDices = Dice.RollADiceInAHand(player.PlayerHandDices, 0);
 
                 // Clear header again and state rolled eyes                
                 // Display the rolled dice by feeding DisplayDices method with the player's hand 
@@ -145,7 +150,7 @@ namespace Qwixx
                 Console.WriteLine(player.PlayerName + " rolls... ");
                               
                 // Convert rolled dice value in player's hand to respective Dice art
-                Dice.DisplayDices(Dice.ConvertDiceToDiceArt(player.PlayerHand));             
+                Dice.DisplayDices(Dice.ConvertDiceToDiceArt(player.PlayerHandDices));             
 
                 Console.WriteLine("Press ENTER to continue.");
                 Console.ReadLine();
@@ -161,7 +166,7 @@ namespace Qwixx
 
             // Sort players playing order, based on rolled dice eyes
             // CHECK: not using PlayerDiceValue to retrieve eyes from rolled dice
-            PlayersSorted = PlayersUnsorted.OrderByDescending(o => o.PlayerHand[0].Eyes).ToList();
+            PlayersSorted = PlayersUnsorted.OrderByDescending(o => o.PlayerHandDices[0].Eyes).ToList();
 
             // Display playing order
             Console.WriteLine("All players have rolled a dice. Playing order will be as following: \n");
@@ -169,7 +174,7 @@ namespace Qwixx
             int count = 1;
             foreach (Player player in PlayersSorted)
             {
-                Console.WriteLine(count + ". " + player.PlayerName + " (rolled " + player.PlayerDiceValue(0) +")");
+                Console.WriteLine(count + ". " + player.PlayerName + " (rolled " + player.PlayerHandDices[0].Eyes +")");
                 count++;
             }
 
@@ -199,13 +204,23 @@ namespace Qwixx
 
                     // Indicate active player
                     Console.WriteLine("It's " + player.PlayerName + "'s turn.\n");
+                    Console.WriteLine(player.PlayerName + "SCOREBOARD\n");
 
                     // Display player's scoreboard
                     Interface.DrawScoreBoard(player);
+                    Console.WriteLine();
+
+                    Console.WriteLine(player.PlayerName + " throws his dices.. ");
+                    Thread.Sleep(100);
+
+
+                    // KEEP TRACK OF INGAME DICES
+                    // HAVE ALL ACTIVE DICES ADDED TO PLAYERS HAND
+                    // MAKE PLAYER THROW DICES
 
                     Console.ReadLine();
                 }
             }
-        }
+        }       
     }
 }
