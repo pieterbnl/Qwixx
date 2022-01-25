@@ -23,17 +23,14 @@ namespace Qwixx
                 switch (userMenuSelection)
                 {
                     case "1": // Start game
-                        Game.RegisterPlayers();
                         Game.InitiateGame();
-                        userMenuSelection = null;
-                        Header();
+                        userMenuSelection = null;                        
                         MainMenu();
                         break;
 
                     case "2": // Show highscores
                         //ShowHighScores();
-                        //userMenuSelection = null;
-                        Header();
+                        //userMenuSelection = null;                        
                         MainMenu();
                         break;
 

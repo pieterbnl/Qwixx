@@ -58,10 +58,10 @@ namespace Qwixx
                 // Break line, as now all thrown dices are looped
                 // and a full dice face line has been completed
                 Console.WriteLine();
-
-                // Return console display color to normal
-                Console.ForegroundColor = ConsoleColor.White;
             }
+
+            // Return console display color to normal
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

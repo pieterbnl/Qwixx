@@ -30,21 +30,22 @@ namespace Qwixx
             DICE2[2] = new StringBuilder("│         │");
             DICE2[3] = new StringBuilder("│      0  │");
             DICE2[4] = new StringBuilder("└─────────┘");
-            DICE2[5] = new StringBuilder("yellow");
+            DICE2[5] = new StringBuilder("white");
                         
             DICE3[0] = new StringBuilder("┌─────────┐");
             DICE3[1] = new StringBuilder("│  0      │");
             DICE3[2] = new StringBuilder("│    0    │");
             DICE3[3] = new StringBuilder("│      0  │");
             DICE3[4] = new StringBuilder("└─────────┘");
-            DICE3[5] = new StringBuilder("blue");
-                        
+            DICE3[5] = new StringBuilder("white");
+
             DICE4[0] = new StringBuilder("┌─────────┐");
             DICE4[1] = new StringBuilder("│  0   0  │");
             DICE4[2] = new StringBuilder("│         │");
             DICE4[3] = new StringBuilder("│  0   0  │");
             DICE4[4] = new StringBuilder("└─────────┘");
-                    
+            DICE4[5] = new StringBuilder("white");
+
             DICE5[0] = new StringBuilder("┌─────────┐");
             DICE5[1] = new StringBuilder("│  0   0  │");
             DICE5[2] = new StringBuilder("│    0    │");
@@ -57,7 +58,7 @@ namespace Qwixx
             DICE6[2] = new StringBuilder("│  0   0  │");
             DICE6[3] = new StringBuilder("│  0   0  │");
             DICE6[4] = new StringBuilder("└─────────┘");
-            DICE6[5] = new StringBuilder("red");
+            DICE6[5] = new StringBuilder("white");
         }
     }
 }

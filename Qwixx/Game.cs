@@ -22,12 +22,41 @@ namespace Qwixx
 
         internal static List<StringBuilder[]> DicesThrown = new List<StringBuilder[]>();
 
-        internal static List<Player> PlayersUnsorted = new List<Player>();
+        internal static List<Player> PlayersUnsorted = new List<Player>(); // holds list of newly created players, in order of player creation
+        internal static List<Player> PlayersSorted = new List<Player>(); // holds list of players, in playing order after having rolled a dice
 
-        // Get input on users
+        // Clear's all game values, to start a new game
+        internal static void ClearGame()
+        {
+            NumberOfPlayers = 0;
+            ActivePlayer = 0;
+            DicesThrown.Clear();
+            PlayersUnsorted.Clear();
+        }
+
+        // Initiate game
+        internal static void InitiateGame()
+        {
+            // Clear any values of a possible previous game
+            ClearGame();
+
+            // Check which users will participate and register them
+            Game.RegisterPlayers();
+
+            // Create dice faces art
+            DiceArt.CreateDiceFaces();
+
+            // Decide playing order, by rolling dices
+            Game.SetPlayingOrder();
+
+            // Display playing order, after having rolled dices
+            Game.DisplayPlayingOrder();
+        }
+
+        // Set players
         internal static void RegisterPlayers()
         {
-            // Clear header
+            // Start with a clean header
             Interfacing.Header();
 
             // Check how many players will play
@@ -42,40 +71,35 @@ namespace Qwixx
             Interfacing.Header();
             Console.WriteLine(NumberOfPlayers + " players will play.\n");
 
-            // Create users
+            // Confirm names of each player
+            // Add a player object for each player to a PlayersUnsorted list
             // CHECK: clumsy, refactor later
             for (int i = 1; i <= NumberOfPlayers; i++)
-            {
-                string? PlayerName = ""; // CHECK
+            {                
                 Console.Write("Enter name for Player " + i + ": ");
-                PlayerName = Console.ReadLine();
+                string? PlayerName = Console.ReadLine();
                 Console.WriteLine();
 
-                switch (i) {
-                    case 1:
-                        PlayerOne.PlayerName = PlayerName.ToUpper();
-                        PlayersUnsorted.Add(PlayerOne);
-                        //PlayersUnsorted.Add(PlayerOne = new Player(PlayerName.ToUpper()));
+                switch (i)
+                {
+                    case 1:                        
+                        PlayersUnsorted.Add(PlayerOne = new Player(PlayerName.ToUpper()));
                         break;
 
-                    case 2:
-                        PlayerTwo.PlayerName = PlayerName.ToUpper();
-                        PlayersUnsorted.Add(PlayerTwo);
+                    case 2:                        
+                        PlayersUnsorted.Add(PlayerTwo = new Player(PlayerName.ToUpper()));
                         break;
 
-                    case 3:
-                        PlayerThree.PlayerName = PlayerName.ToUpper();
-                        PlayersUnsorted.Add(PlayerThree);
+                    case 3:                        
+                        PlayersUnsorted.Add(PlayerThree = new Player(PlayerName.ToUpper()));
                         break;
 
-                    case 4:
-                        PlayerFour.PlayerName = PlayerName.ToUpper();
-                        PlayersUnsorted.Add(PlayerFour);
+                    case 4:                        
+                        PlayersUnsorted.Add(PlayerFour = new Player(PlayerName.ToUpper()));
                         break;
 
-                    case 5:
-                        PlayerFive.PlayerName = PlayerName.ToUpper();
-                        PlayersUnsorted.Add(PlayerFive);
+                    case 5:                       
+                        PlayersUnsorted.Add(PlayerFive = new Player(PlayerName.ToUpper()));
                         break;
 
                     default:
@@ -83,24 +107,17 @@ namespace Qwixx
                 }
             }
         }
-        internal static void InitiateGame()
-        {
-            // Create dice faces art
-            DiceArt.CreateDiceFaces();
 
-            // Decide playing order
-            Game.SetPlayingOrder();
-        }
-
+        // Set playing order of players
         internal static void SetPlayingOrder()
         {           
             // Show game is starting
             Console.WriteLine("All players are created. Each player will now roll a dice.");
             Console.WriteLine("Playing order will be in order of the rolled eyes.\n");
 
-            // Iterate through all player objects in unsorted player list
+            // Iterate through all player objects in unsorted player list            
             foreach (Player player in PlayersUnsorted)
-            {
+            {              
                 // Make sure to clear player's hand: containing no dices
                 player.ClearPlayerHand();
 
@@ -120,33 +137,36 @@ namespace Qwixx
                 // Clear header again and state rolled eyes                
                 // Display the rolled dice by feeding DisplayDices method with the player's hand 
                 Interfacing.Header();
-                Console.WriteLine(player.PlayerName + " rolls... ");                                
-                DrawDice.DisplayDices(player.ConvertDiceToDiceArt(player.PlayerHand));                
-                Console.WriteLine("Press a key to continue.");
+                Console.WriteLine(player.PlayerName + " rolls... ");
+                              
+                // Convert rolled dice value in player's hand to respective Dice art
+                DrawDice.DisplayDices(Dice.ConvertDiceToDiceArt(player.PlayerHand));             
+
+                Console.WriteLine("Press ENTER to continue.");
                 Console.ReadLine();
                 userMenuSelection = "";
-            }
+            }           
+        }
+
+        internal static void DisplayPlayingOrder()
+        {
+            // Clear header
+            Interfacing.Header();
 
             // Sort players playing order, based on rolled dice eyes
             // CHECK: not using PlayerDiceValue to retrieve eyes from rolled dice
-            List<Player> PlayersSorted = PlayersUnsorted.OrderByDescending(o => o.PlayerHand[0].Eyes).ToList();
+            PlayersSorted = PlayersUnsorted.OrderByDescending(o => o.PlayerHand[0].Eyes).ToList();
 
             // Display playing order
-            Console.WriteLine("Playing order will be as following. Press a key to continue.");
+            Console.WriteLine("All players have rolled a dice. Playing order will be as following: \n");            
+            
             foreach (Player player in PlayersSorted)
             {
                 Console.WriteLine(player.PlayerName + ": " + player.PlayerDiceValue(0));
             }
-            Console.ReadLine();
-        }
 
-        // Clear's all game values, to start a new game
-        internal static void ClearGame()
-        {
-            NumberOfPlayers = 0;
-            ActivePlayer = 0;
-            DicesThrown.Clear();
-            PlayersUnsorted.Clear();
+            Console.WriteLine("\nPress ENTER to start the game.");
+            Console.ReadLine();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Qwixx
             // Initiate game by showing it's menu
              Interfacing.MainMenu();
 
-
+/*
             // TEMP STUFF FOR QUICK TESTING
             // string userMenuSelection = "";
             Player PlayerOne = new Player("P1");
@@ -27,10 +27,7 @@ namespace Qwixx
             PlayersUnsorted.Add(PlayerTwo);
             PlayersUnsorted.Add(PlayerThree);
             PlayersUnsorted.Add(PlayerFour);
-
-
-
-
+*/
 
             // Request number of players
 
