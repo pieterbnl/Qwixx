@@ -11,8 +11,7 @@ namespace Qwixx
         // Class variables
         internal string? PlayerName { get; set; }
         internal int PlayerWins { get; set; } = 0;
-        internal int PlayerLosses { get; set; } = 0;
-        internal int RollADice = 0;
+        internal int PlayerLosses { get; set; } = 0;        
         internal int PlayerHighScore { get; set; } = 0;
         
         // CHECK: remove set? should only be changeable via seperate method

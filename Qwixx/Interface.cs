@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Qwixx
 {
-    internal static class Interfacing
+    internal static class Interface
     {      
         internal static void MainMenu()
         {

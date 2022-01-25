@@ -18,6 +18,12 @@ namespace Qwixx
             this.Eyes = Eyes;
         }
 
+        // Generate a rolled dice eyes
+        internal static int RollADice()
+        {
+            Random dice = new Random();
+            return dice.Next(1, 7);
+        }
 
         // Converts one or more passed integer values (representing dice eyes) to representing diceart
         // Returns the diceart in a list, containing all dice art in SB format
@@ -57,6 +63,61 @@ namespace Qwixx
             }
             // Return list with added SB dice art
             return dicesThrown;
+        }
+
+        // Outputs concatated colored faces of passed dices, line by line
+        // Requires input of a list with DiceArt StringBuilder faces        
+        internal static void DisplayDices(List<StringBuilder[]> DicesThrown)
+        {
+            // Loop trough all (5) lines that make up a dice face
+            for (int line = 0; line <= 4; line++)
+            {
+                // Loop through each thrown dice
+                foreach (StringBuilder[] dice in DicesThrown)
+                {
+                    // Check the dice color and set the console display accordingly
+                    switch (dice[5].ToString())
+                    {
+                        case "white":
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                        case "red":
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            break;
+                        case "green":
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            break;
+                        case "yellow":
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            break;
+                        case "blue":
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            break;
+                    }
+
+                    // Write line from dice, including some white space
+                    Console.Write(dice[line]);
+                    Console.Write("    ");
+
+                }
+                // Break line, as now all thrown dices are looped
+                // and a full dice face line has been completed
+                Console.WriteLine();
+            }
+
+            // Return console display color to normal
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        // Method to draw dice to console
+        internal static void Draw(List<Dice> PlayerHand)
+        {
+            int count = 0;
+            foreach (Dice dice in PlayerHand)
+            {
+                count = count + 1;
+                Console.WriteLine("Dice " + count + "(" + dice.Color + ") eyes are: " + dice.Eyes);
+            }
         }
     }
 }

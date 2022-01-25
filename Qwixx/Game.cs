@@ -57,7 +57,7 @@ namespace Qwixx
         internal static void RegisterPlayers()
         {
             // Start with a clean header
-            Interfacing.Header();
+            Interface.Header();
 
             // Check how many players will play
             while (NumberOfPlayers < 2 || NumberOfPlayers > 5)
@@ -68,7 +68,7 @@ namespace Qwixx
             }
 
             // Clear header again and display number of players
-            Interfacing.Header();
+            Interface.Header();
             Console.WriteLine(NumberOfPlayers + " players will play.\n");
 
             // Confirm names of each player
@@ -122,7 +122,7 @@ namespace Qwixx
                 player.ClearPlayerHand();
 
                 // Clear header
-                Interfacing.Header();              
+                Interface.Header();              
 
                 // Make selected player roll a dice
                 while (userMenuSelection != "R")
@@ -132,15 +132,15 @@ namespace Qwixx
                 }
 
                 // Roll a dice and add rolled dice to playerhand
-                player.AddDiceToPlayerHand("white", RollDice.Roll());
+                player.AddDiceToPlayerHand("white", Dice.RollADice());
 
                 // Clear header again and state rolled eyes                
                 // Display the rolled dice by feeding DisplayDices method with the player's hand 
-                Interfacing.Header();
+                Interface.Header();
                 Console.WriteLine(player.PlayerName + " rolls... ");
                               
                 // Convert rolled dice value in player's hand to respective Dice art
-                DrawDice.DisplayDices(Dice.ConvertDiceToDiceArt(player.PlayerHand));             
+                Dice.DisplayDices(Dice.ConvertDiceToDiceArt(player.PlayerHand));             
 
                 Console.WriteLine("Press ENTER to continue.");
                 Console.ReadLine();
@@ -151,18 +151,20 @@ namespace Qwixx
         internal static void DisplayPlayingOrder()
         {
             // Clear header
-            Interfacing.Header();
+            Interface.Header();
 
             // Sort players playing order, based on rolled dice eyes
             // CHECK: not using PlayerDiceValue to retrieve eyes from rolled dice
             PlayersSorted = PlayersUnsorted.OrderByDescending(o => o.PlayerHand[0].Eyes).ToList();
 
             // Display playing order
-            Console.WriteLine("All players have rolled a dice. Playing order will be as following: \n");            
-            
+            Console.WriteLine("All players have rolled a dice. Playing order will be as following: \n");
+
+            int count = 1;
             foreach (Player player in PlayersSorted)
             {
-                Console.WriteLine(player.PlayerName + ": " + player.PlayerDiceValue(0));
+                Console.WriteLine(count + ". " + player.PlayerName + " (rolled " + player.PlayerDiceValue(0) +")");
+                count++;
             }
 
             Console.WriteLine("\nPress ENTER to start the game.");

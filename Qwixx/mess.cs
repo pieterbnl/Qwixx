@@ -9,7 +9,7 @@ namespace Qwixx
     internal class mess
     {
 
-        
+
         /*
          * DICTIONARY TRIALS
          * 
@@ -32,7 +32,7 @@ namespace Qwixx
                     Console.WriteLine(player.Key.PlayerName + "! Ready to roll a dice? Press [R] to roll!");                    
                     userMenuSelection = Console.ReadLine().ToUpper();
     }
-    PlayerRoleScore = RollDice.Roll();
+    PlayerRoleScore = Dice.RollADice();
 
                 // Copy player object with rolled dice value to sorted dictionary
                 // AS I DO NOT KNOW HOW TO UPDATE A VALUE IN A DICT
@@ -53,7 +53,7 @@ foreach (KeyValuePair<Player, int> player in PlayersSorted)
 }
 
 */
-    
+
     }
 
 }

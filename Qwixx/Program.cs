@@ -11,7 +11,7 @@ namespace Qwixx
             Console.ReadLine();*/
 
             // Initiate game by showing it's menu
-             Interfacing.MainMenu();
+             Interface.MainMenu();
 
 /*
             // TEMP STUFF FOR QUICK TESTING
