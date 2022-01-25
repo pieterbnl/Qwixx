@@ -11,6 +11,8 @@ namespace Qwixx
         internal static int NumberOfPlayers = 0;
         internal static int ActivePlayer = 0;
 
+        internal static bool GameActive = true; // tracks if a game is 'active' (true) or ended (false)
+
         // CHECK: dynamically creation of objects
         internal static Player PlayerOne = new Player();
         internal static Player PlayerTwo = new Player();
@@ -18,7 +20,7 @@ namespace Qwixx
         internal static Player PlayerFour = new Player();
         internal static Player PlayerFive = new Player();
 
-        static string userMenuSelection = "";
+        static string userMenuSelection = ""; // for receiving a user's menu selection
 
         internal static List<StringBuilder[]> DicesThrown = new List<StringBuilder[]>();
 
@@ -51,6 +53,9 @@ namespace Qwixx
 
             // Display playing order, after having rolled dices
             Game.DisplayPlayingOrder();
+
+            // Start game and display the first player's action and scoreboard
+            Game.PlayGame();
         }
 
         // Set players
@@ -148,6 +153,7 @@ namespace Qwixx
             }           
         }
 
+        // Displaying the player's playing order
         internal static void DisplayPlayingOrder()
         {
             // Clear header
@@ -169,6 +175,37 @@ namespace Qwixx
 
             Console.WriteLine("\nPress ENTER to start the game.");
             Console.ReadLine();
+        }
+
+        // Start of the actual game
+        internal static void PlayGame()
+        {
+            // Display current active player + player's score board
+            // Request player to throw the dices
+
+            // Prepare initial (empty) scoreboard for each player
+            foreach (Player player in PlayersSorted)
+            {
+                player.Scoreboard.InitiateScoreboard();
+            }
+
+            // Keep iterating game rounds, while game is 'active' (i.e. no game ending conditions have emerged yet)
+            while (GameActive)
+            {
+                foreach (Player player in PlayersSorted)
+                {
+                    // Clear header
+                    Interface.Header();
+
+                    // Indicate active player
+                    Console.WriteLine("It's " + player.PlayerName + "'s turn.\n");
+
+                    // Display player's scoreboard
+                    Interface.DrawScoreBoard(player);
+
+                    Console.ReadLine();
+                }
+            }
         }
     }
 }

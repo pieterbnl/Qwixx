@@ -13,6 +13,8 @@ namespace Qwixx
         internal int PlayerWins { get; set; } = 0;
         internal int PlayerLosses { get; set; } = 0;        
         internal int PlayerHighScore { get; set; } = 0;
+
+        internal Scoreboard Scoreboard = new Scoreboard(); // holds a player's scoreboard
         
         // CHECK: remove set? should only be changeable via seperate method
         internal List<Dice> PlayerHand { get; set; } = new List<Dice>();

@@ -29,13 +29,13 @@ namespace Qwixx
             PlayersUnsorted.Add(PlayerFour);
 */
 
-            // Request number of players
+            // Request number of players -- DONE
 
-            // Create object for each player and request player name
+            // Create object for each player and request player name -- DONE
 
-            // Decide playing order by having players throw a dice
+            // Decide playing order by having players throw a dice -- DONE
 
-            // Register current active player
+            // Register current active player -- DONE
 
             // Display current active player + player's score board
             // Request player to throw the dices
